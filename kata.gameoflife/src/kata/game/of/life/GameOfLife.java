@@ -3,38 +3,45 @@ package kata.game.of.life;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class GameOfLife {
 
+    private List<List<Object>> gameWorld;
+
+    public GameOfLife(final int worldSize) {
+        this.gameWorld = new ArrayList<List<Object>>();
+        addLandOfTheWorld(worldSize);
+        
+    }
+
     public List<List<Object>> getWorld() {
-        List<List<Object>> world = new ArrayList<List<Object>>();
-        
-        world.add(getAPieceOfLand());
-        world.add(getAPieceOfLand());
-        world.add(getAPieceOfLand());
-        return world;
-    }
-
-    private List<Object> getAPieceOfLand() {
-        List<Object> pieceOfWorld = new ArrayList<Object>();
-        pieceOfWorld.add(null);
-        pieceOfWorld.add(null);
-        pieceOfWorld.add(null);
-        return pieceOfWorld;
-    }
-
-    public void addLifeToTheWorld(List<List<Object>> world, Object object, int positionForRowInWorld, int positionForColumnInWorld) {
-        world.get(positionForRowInWorld).add(positionForColumnInWorld, object);
-    }
-
-    public List<List<Object>> getWorldWithLife() {
-        List<List<Object>> worldWithLife = getWorld();
-        addLifeToTheWorld(worldWithLife, new Object(), 1, 1);
-        return worldWithLife;
-    }
-
-    public void stepToNextDay(List<List<Object>> world) {
-        world.get(1).add(1, null);
-        
+        return gameWorld;
     }
     
+    private ArrayList<Object> getAPieceOfLand(final int worldSize) {
+        ArrayList<Object> land = new ArrayList<Object>();
+        addPieceOfLand(land, worldSize, null);
+        return land;
+    }
+    
+    private void addLandOfTheWorld(final int worldSize) {
+        int landAdded = 0;
+        while (landAdded < worldSize) {
+            this.gameWorld.add(getAPieceOfLand(worldSize));
+            landAdded++;
+        }
+    }
+
+    private void addPieceOfLand(final List<Object> land, final int worldSize, final Object pieceOfTheLand) {
+        int landAdded = 0;
+        while (landAdded < worldSize) {
+            addLand(land, pieceOfTheLand);
+            landAdded++;
+        }
+    }
+
+    private void addLand(final List<Object> place, final Object land) {
+        place.add(land);
+    }
+
 }

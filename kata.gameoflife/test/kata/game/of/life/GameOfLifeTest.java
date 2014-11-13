@@ -7,76 +7,44 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GameOfLifeTest {
 
-    private GameOfLife gameOfLife;
+public class GameOfLifeTest {
 
     @Before
     public void setUp() throws Exception {
-        gameOfLife = new GameOfLife();
     }
 
     @Test
-    public void WhenStartTheGameThenInstantiateTheClassGameOfLife() {
-        assertNotNull(gameOfLife);
-    }
-
-    @Test
-    public void WhenTheGameIsInitialicerThenCreateTheGridWorld() throws Exception {
-        List<List<Object>> world = gameOfLife.getWorld();
-        assertNotNull(world);
-        assertEquals(3, world.size());
-        for (List<Object> peaceOfWorld : world) {
-            assertEquals(3, peaceOfWorld.size());
-        }
-    }
-
-    @Test
-    public void WhenTheWorldIsCreateInTheGameThenCanAddACellInTheFirstRowAndFirstColumn() throws Exception {
-        List<List<Object>> world = gameOfLife.getWorld();
-        gameOfLife.addLifeToTheWorld(world, new Object(), 0, 0);
-        assertNotNull(world.get(0).get(0));
-    }
-
-    @Test
-    public void WhenTheWorldIsCreateInTheGameThenCanAddACellInTheFirstRowAndSecondColumn() throws Exception {
-        List<List<Object>> world = gameOfLife.getWorld();
-        gameOfLife.addLifeToTheWorld(world, new Object(), 0, 1);
-        assertNotNull(world.get(0).get(1));
-    }
-
-    @Test
-    public void WhenTheWorldIsCreateInTheGameThenCanAddACellInTheFirstRowAndThirdColumn() throws Exception {
-        List<List<Object>> world = gameOfLife.getWorld();
-        gameOfLife.addLifeToTheWorld(world, new Object(), 0, 2);
-        assertNotNull(world.get(0).get(2));
-    }
-
-    @Test
-    public void WhenTheWorldIsCreateInTheGameThenCanAddACellInTheSecondRowAndFirstColumn() throws Exception {
-        List<List<Object>> world = gameOfLife.getWorld();
-        gameOfLife.addLifeToTheWorld(world, new Object(), 1, 0);
-        assertNotNull(world.get(1).get(0));
-    }
-
-    @Test
-    public void WhenTheWorldIsCreateInTheGameThenCanAddACellInTheSecondRowAndSecondColumn() throws Exception {
-        List<List<Object>> world = gameOfLife.getWorld();
-        gameOfLife.addLifeToTheWorld(world, new Object(), 2, 0);
-        assertNotNull(world.get(2).get(0));
-    }
-
-    @Test
-    public void WhenTheWorldIsCreate_CreateItWithACellInTheFirstRowAndFirstColumn() throws Exception {
-        List<List<Object>> world = gameOfLife.getWorldWithLife();
-        assertNotNull(world.get(1).get(1));
+    public void createGameOfLifeClass() {
+        GameOfLife gameOfLife = null;
+        assertNull(gameOfLife);
     }
     
     @Test
-    public void CellWithFewerThanTwoLiveNeighborsDies() throws Exception {
-        List<List<Object>> world = gameOfLife.getWorldWithLife();
-        gameOfLife.stepToNextDay(world);
-        assertNull(world.get(1).get(1));
+    public void WhenTheGameBeginThenCreateTheWorldWithTheGivenSizeOfOne() throws Exception {
+        GameOfLife gameOfLife = new GameOfLife(1);
+        List<List<Object>> world = gameOfLife.getWorld();
+        assertNotNull(gameOfLife);
+        assertEquals(1, world.size());
+        assertEquals(1, world.get(0).size());
+    }
+    
+    @Test
+    public void WhenTheGameBeginThenCreateTheWorldWithTheGivenSizeOfTwo() throws Exception {
+        GameOfLife gameOfLife = new GameOfLife(2);
+        List<List<Object>> world = gameOfLife.getWorld();
+        assertNotNull(gameOfLife);
+        assertEquals(2, world.size());
+        assertEquals(2, world.get(0).size());
+    }
+    
+    @Test
+    public void WhenTheGameBeginThenCreateTheWorldWithTheGivenSizeOfThree() throws Exception {
+        GameOfLife gameOfLife = new GameOfLife(3);
+        List<List<Object>> world = gameOfLife.getWorld();
+        assertNotNull(gameOfLife);
+        assertEquals(3, world.size());
+        assertEquals(3, world.get(0).size());
     }
 
 }
